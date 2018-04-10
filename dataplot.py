@@ -10,7 +10,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_address = ('localhost', 10000)
 #print('starting up on {} port {}'.format(*server_address))
 sock.bind(server_address)
-data = 'llll DATA: 9,-8,0,5.4,7,23,5,7,-1,4,3,6,12,4,12,8'
+data = 'llll DATA: 0,4.4,-4.3,0,0,6.8,-7,0,0,1.6,-1.6,0,0,6.3,-6.4,0'
 
 while True:
 
@@ -42,3 +42,4 @@ while True:
         plt.xlabel('Time (sec)', fontdict=font)
         plt.ylabel('Amplitude', fontdict=font)
         plt.show()
+        break
