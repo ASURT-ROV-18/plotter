@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.interpolate import spline
+from scipy import interpolate
 # Create a UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -25,13 +26,16 @@ while True:
         print (vect)
         vect = [float(numeric_string) for numeric_string in vect]
 
-        #p = plt.plot(x,vect)
-        #plt.show(p)
-        xnew = np.linspace(1,16,200)
+        xnew = np.linspace(1, 16, 200)
+        tck = interpolate.splrep(range(1,17), vect,k=2,s=0)
+        yder = interpolate.splev(xnew, tck, der=0)
+        plt.figure()
+        plt.plot(xnew, yder,  '-')
 
-        power_smooth = spline(range(1,17),vect,xnew)
+       # xnew = np.linspace(1,16,200)
+       # power_smooth = spline(range(1,17),vect,xnew)
+       # plt.plot(xnew,power_smooth)
 
-        plt.plot(xnew,power_smooth)
         font = {'family': 'serif',
                 'color': 'black',
                 'weight': 'normal',
